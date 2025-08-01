@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ILoginRes, ILoginReturn } from 'src/app/models/interface/ILogin';
+import { ILoginRes } from 'src/app/models/interface/ILogin';
 import { AuthService } from 'src/app/services/authentication/auth.service';
 @Component({
   selector: 'app-login',
@@ -11,8 +11,8 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  errorhide = false;
-  errorMessage = '';
+  errorHide = true;
+  errorMessage = 'hi hello';
   hide = true;
 
   constructor(
@@ -36,20 +36,17 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(
         (response: ILoginRes) => {
-          console.log(response);
-          if (response.statusCode === 400 || response.statusCode === 401) {
-            // this.router.navigate['dashboard/firstpage'];
-            this.errorhide = true;
-            this.errorMessage = response.message;
-          } else if (response.statusCode === 200) {
-            if (this.storeToken(response.token)) {
-              // this.router.navigate(['dashboard']);
-              console.log('redirected');
-            }
+          //   console.log(response);
+
+          if (this.storeToken(response.token)) {
+            // this.router.navigate(['dashboard']);
+            console.log('redirected');
           }
         },
         (error) => {
           console.log('Login Failed', error);
+          this.errorHide = false;
+          this.errorMessage = error.error.message;
         }
       );
     }

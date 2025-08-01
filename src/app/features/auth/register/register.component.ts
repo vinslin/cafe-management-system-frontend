@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IRegisterRes } from 'src/app/models/interface/IRegister';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +11,16 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  errorHide = true;
   errorMessage = '';
   hide = true;
-  error=false;
+  error = false;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required]],
       contactNumber: [
@@ -26,7 +33,24 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log('submited', this.registerForm);
+    // console.log('submited', this.registerForm);
+    if (this.registerForm.valid) {
+      this.errorHide = true;
+      //api call
+
+      this.authService.register(this.registerForm.value).subscribe(
+        (response: IRegisterRes) => {
+          alert(response.message);
+          this.gotoLogin();
+        },
+        (error) => {
+          console.log('Register Failed', error);
+          this.errorHide = false;
+          this.errorMessage = error.error.message;
+          console.log(this.errorHide);
+        }
+      );
+    }
   }
 
   getNameErrorMessage() {

@@ -39,6 +39,9 @@
       <button mat-raised-button color="primary" type="submit">Login</button>
     </div>
   </form>
+  <div *ngIf="!errorHide">
+    <p>{{ errorMessage }}</p>
+  </div>
 
   <button type="button" (click)="gotoSignup()">Register User</button>
 </div>

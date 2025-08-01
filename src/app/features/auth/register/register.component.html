@@ -63,10 +63,14 @@
           getpasswordErrorMessage()
         }}</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Login</button>
+      <button mat-raised-button color="primary" type="submit">Register</button>
     </div>
   </form>
   <div *ngIf="error"><h3>please fill the form correctly</h3></div>
 
   <button type="button" (click)="gotoLogin()">Return to Login</button>
+
+  <div *ngIf="!errorHide">
+    <p>{{ errorMessage }}</p>
+  </div>
 </div>

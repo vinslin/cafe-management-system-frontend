@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment/environment.prod';
-import { BehaviorSubject, Observable, of } from 'rxjs';
-import {
-  ILoginRes,
-  ILoginReq,
-  ILoginReturn,
-} from '../../models/interface/ILogin';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ILoginRes, ILoginReq } from '../../models/interface/ILogin';
+import { IRegisterReq, IRegisterRes } from 'src/app/models/interface/IRegister';
 
 @Injectable({
   providedIn: 'root',
@@ -38,5 +35,11 @@ export class AuthService {
       credentials
     );
   }
-  
+
+  register(credentials: IRegisterReq): Observable<IRegisterRes> {
+    return this.http.post<IRegisterRes>(
+      environment.API_URL + 'user/register',
+      credentials
+    );
+  }
 }

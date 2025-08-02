@@ -1,13 +1,14 @@
+<p>product works!</p>
 <!-- <p>category works!</p> -->
 <div class="whole">
   <p>
     <mat-toolbar>
-      <span>Manage Category</span>
+      <span>Manage Product</span>
       <span class="example-spacer"></span>
 
       <input matInput placeholder="type here" formControlName="name" required />
       <button mat-raised-button color="primary" (click)="openGetter()">
-        Add Category
+        Add Product
       </button>
     </mat-toolbar>
   </p>
@@ -28,6 +29,21 @@
         <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+
       <!-- Symbol Column -->
       <ng-container matColumnDef="symbol">
         <th mat-header-cell *matHeaderCellDef>Action</th>
@@ -36,10 +52,23 @@
             mat-icon-button
             class="example-icon"
             aria-label="Example icon-button with share icon"
-            (click)="updateCategory(element.id)"
+            (click)="updateProduct(element.id)"
           >
             <mat-icon class="big-icon">edit</mat-icon>
           </button>
+          <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with share icon"
+            (click)="deleteProduct(element.id)"
+          >
+            <mat-icon class="big-icon">delete</mat-icon>
+          </button>
+          <mat-slide-toggle
+            [checked]="element.status === 1"
+            (change)="onToggleChange(element.id, $event.checked)"
+          >
+          </mat-slide-toggle>
         </td>
       </ng-container>
 

@@ -6,6 +6,7 @@ import { CategoryComponent } from './category/category.component';
 import { OrderComponent } from './order/order.component';
 import { UsersComponent } from './users/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'product',
+    component: ProductComponent,
   },
   {
     path: 'bill',

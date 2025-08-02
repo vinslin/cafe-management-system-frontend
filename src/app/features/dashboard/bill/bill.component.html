@@ -1,1 +1,80 @@
 <p>bill works!</p>
+<!-- <p>category works!</p> -->
+<div class="whole">
+  <p>
+    <mat-toolbar>
+      <span>Manage Bills</span>
+      <span class="example-spacer"></span>
+
+      <input matInput placeholder="type here" formControlName="name" required />
+      <button mat-raised-button color="primary" (click)="openGetter()">
+        Add Product
+      </button>
+    </mat-toolbar>
+  </p>
+  <!-- <p *ngIf="loginForm?.get('email')?.invalid">{{
+    getErrorMessage()
+  }}<p> -->
+
+  <input matInput placeholder="Filter" />
+
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="contactNumber">
+        <th mat-header-cell *matHeaderCellDef>Contact Number</th>
+        <td mat-cell *matCellDef="let element">{{ element.contactNumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef>payment Method</th>
+        <td mat-cell *matCellDef="let element">{{ element.paymentMethod }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+        <td mat-cell *matCellDef="let element">{{ element.total }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with share icon"
+            (click)="viewBill(element.id)"
+          >
+            <mat-icon class="big-icon">remove_red_eye</mat-icon>
+            <!-- delete button -->
+          </button>
+          <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with share icon"
+            (click)="deleteBill(element.id)"
+          >
+            <mat-icon class="big-icon">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

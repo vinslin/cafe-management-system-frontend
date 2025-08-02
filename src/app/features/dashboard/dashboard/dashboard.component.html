@@ -1,1 +1,21 @@
-<p>dashboard works!</p>
+<div class="dash-board">
+  <h2>DashBoard</h2>
+  <div class="cards-holder">
+    <div class="card">
+      <h3>Total Category</h3>
+      <h3>{{ categoryTemp }}</h3>
+      <button click="goto('category')">View Category</button>
+    </div>
+
+    <div class="card">
+      <h3>Total Product</h3>
+      <h3>{{ product }}</h3>
+      <button click="goto('product')">View Product</button>
+    </div>
+    <div class="card">
+      <h3>Total Bill</h3>
+      <h3>{{ bill }}</h3>
+      <button click="goto('bill')">View Bill</button>
+    </div>
+  </div>
+</div>

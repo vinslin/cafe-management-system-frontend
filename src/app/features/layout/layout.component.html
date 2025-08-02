@@ -21,15 +21,16 @@
 </mat-toolbar>
 
 <!-- sidebar -->
+
 <mat-drawer-container class="example-container1" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
+    <button (click)="goto('dashboard')" mat-button>DashBoard</button>
+    <button (click)="goto('category')" mat-button>Manage Category</button>
+    <button (click)="goto('product')" mat-button>Manage Product</button>
+    <button (click)="goto('order')" mat-button>Manage Order</button><br />
 
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-
-    <button (click)="showFiller = !showFiller" mat-button>
-      Toggle extra text
-    </button>
+    <button (click)="goto('bill')" mat-button>View Bill</button><br />
+    <button (click)="goto('users')" mat-button>Manage Users</button>
   </mat-drawer>
   <div class="example-sidenav-content">
     <router-outlet></router-outlet>

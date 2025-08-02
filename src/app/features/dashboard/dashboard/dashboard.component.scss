@@ -1,0 +1,35 @@
+.dash-board{
+   // background-color: aqua;
+    width :100%;
+    height:55%;
+
+   display: flex;
+   flex-direction: column;
+        justify-content: center;
+   
+}
+h2{
+     margin-left: 45%;
+}
+.cards-holder{
+     background-color: rgb(35, 95, 95);
+     width:70%;
+     height :80%;
+     margin-left: 15%;
+   display: flex;
+   flex-direction: row;
+        justify-content: center;
+        gap:10px;
+
+
+}
+.card{
+    width:30%;
+    height:80%;
+    background-color: #fafffa;
+    margin-top:4%;
+   // margin-right:2%;
+  // display:flex;
+  //justify-content: center;
+   //flex :row;
+}

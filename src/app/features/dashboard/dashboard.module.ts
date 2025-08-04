@@ -26,6 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductDialogComponent } from './dialogbox/product-dialog/product-dialog.component';
 import { BillViewDialogComponent } from './dialogbox/bill-view-dialog/bill-view-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core'; // needed for mat-option
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { BillViewDialogComponent } from './dialogbox/bill-view-dialog/bill-view-
     MatFormFieldModule,
     FormsModule, // Import FormsModule for form handling
     HttpClientModule, // Import HttpClientModule for HTTP requests
-    ReactiveFormsModule, // Import ReactiveFormsModule for reactive forms
+    ReactiveFormsModule, // Import ReactiveFormsModule for reactive forms,
+    MatSelectModule,
+    MatOptionModule
   ],
 })
 export class DashboardModule {}

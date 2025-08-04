@@ -1,1 +1,63 @@
-<p>product-dialog works!</p>
+<h2 mat-dialog-title>Add Product</h2>
+
+<mat-dialog-content [formGroup]="productForm">
+  <!-- Product Name -->
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Product Name</mat-label>
+    <input matInput placeholder="Enter product name" formControlName="name" />
+    <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+      Product name is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Product Price -->
+  <mat-form-field appearance="fill" style="width: 40%">
+    <mat-label>Product Amount</mat-label>
+    <input
+      matInput
+      placeholder="Enter product price"
+      formControlName="price"
+      type="number"
+    />
+    <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+      Product price is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Product Category -->
+  <mat-form-field appearance="fill" style="width: 40%">
+    <mat-label>Product Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option *ngFor="let cate of categorys" [value]="cate">
+        {{ cate }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="productForm.get('category')?.hasError('required')">
+      Product category is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Product Description -->
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Product Description</mat-label>
+    <textarea
+      matInput
+      placeholder="Write product description"
+      formControlName="description"
+    ></textarea>
+    <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+      Product description is required
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Optional Global Error -->
+  <div *ngIf="errorMessage" style="color: red">
+    {{ errorMessage }}
+  </div>
+</mat-dialog-content>
+
+<!-- Action Buttons -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onAddProduct()">Add</button>
+</mat-dialog-actions>

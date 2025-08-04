@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ProductDialogComponent } from '../dialogbox/product-dialog/product-dialog.component';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -79,7 +80,21 @@ export class ProductComponent {
     },
   ];
 
-  openGetter() {}
+  constructor(public dialog: MatDialog) {}
+
+  openGetter() {
+    const dialogRef = this.dialog.open(ProductDialogComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Product added:', result);
+        // Here you can handle the result, e.g., add it to the dataSource
+        // this.dataSource.push({ id: this.dataSource.length + 1, ...result });
+      }
+    });
+  }
 
   updateProduct(id: number) {
     console.log('update');

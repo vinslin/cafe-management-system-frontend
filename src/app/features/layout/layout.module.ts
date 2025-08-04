@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon'; // optional for icons
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu'; // Import MatMenuModule
 @NgModule({
   declarations: [LayoutComponent],
   imports: [
@@ -17,6 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatMenuModule, // Add MatMenuModule to imports for menu bar dude'
   ],
 })
 export class LayoutModule {}

@@ -17,7 +17,8 @@ import { MatIconModule } from '@angular/material/icon'; // optional for icons
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProductComponent } from './product/product.component';
-import { MatDialog } from '@angular/material/dialog'; //pop up 
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryDialogComponent } from './dialogbox/category-dialog/category-dialog.component'; //pop up 
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -27,6 +28,7 @@ import { MatDialog } from '@angular/material/dialog'; //pop up
     UsersComponent,
     DashboardComponent,
     ProductComponent,
+    CategoryDialogComponent,
   ],
   imports: [
     CommonModule,

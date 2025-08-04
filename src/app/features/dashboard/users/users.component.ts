@@ -1,63 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { getAllUserRes, UserStatusReq } from 'src/app/models/interface/IUsers';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
   searchValue = '';
   displayedColumns: string[] = ['name', 'email', 'contactNumber', 'status'];
 
+  dataSource: getAllUserRes[] = [];
 
-  dataSource = [
-    {
-      id: 1,
-      name: 'test',
-      email: 'test@gmail.com',
-      contactNumber: '1237891023',
-      status: 1,
-    },
-    {
-      id: 2,
-      name: 'Oliver',
-      email: 'rakenot987@saturdata.com',
-      contactNumber: '1591591591',
-      status: 1,
-    },
-    {
-      id: 3,
-      name: 'Noah',
-      email: 'worelih887@xxyyi.com',
-      contactNumber: '1521521521',
-      status: 0,
-    },
-    {
-      id: 4,
-      name: 'Tim',
-      email: 'sopad72638@ehstock.com',
-      contactNumber: '1237891124',
-      status: 0,
-    },
-    {
-      id: 5,
-      name: 'BTech Days',
-      email: 'wakipe1881@zoeyy.com',
-      contactNumber: '1234567890',
-      status: 0,
-    },
-    {
-      id: 6,
-      name: 'BTech Days',
-      email: 'btechdays@mailinator.com',
-      contactNumber: '1234567890',
-      status: 0,
-    },
-  ];
+  constructor(private userService: UserService) {}
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe({
+      next: (response) => {
+        this.dataSource = response;
+        console.log('Users fetched successfully:', this.dataSource);
+      },
+      error: (error) => {
+        console.error('Error fetching users:', error);
+      },
+    });
+  }
+
+  ngOnInit(): void {
+    this.getAllUsers();
+  }
 
   onToggleChange(id: number, isChecked: boolean) {
-    const status = isChecked ? 1 : 0;
+    const status = isChecked ? 'true' : 'false';
+    // const user
+    const req : UserStatusReq = {
+      id: id,
+      status: status,
+    };
+    this.userService.updateUserStatus(req).subscribe({
+      next: (response) => {
+        console.log('User status updated successfully:', response);
+        this.getAllUsers(); // Refresh the user list after updating status
+      },
+      error: (error) => {
+        console.error('Error updating user status:', error);
+      },
+    });
+    // For debugging purposes, you can log the ID and new status
 
-    console.log(`Calling API for ID: ${id}, New Status: ${status}`);
+    // console.log(`Calling API for ID: ${id}, New Status: ${status}`);
   }
 }

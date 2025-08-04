@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Add Category</h2>
+<h2 mat-dialog-title>{{ mainName() }}</h2>
 
 <mat-dialog-content>
   <mat-form-field appearance="fill" style="width: 100%">
@@ -18,5 +18,7 @@
 <!-- Buttons to control the dialog -->
 <mat-dialog-actions align="end">
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onAddCategory()">Add</button>
+  <button mat-button color="primary" (click)="onAddCategory()">
+    {{ mainButtonName() }}
+  </button>
 </mat-dialog-actions>

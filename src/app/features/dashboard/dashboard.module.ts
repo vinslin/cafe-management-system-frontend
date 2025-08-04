@@ -29,6 +29,8 @@ import { BillViewDialogComponent } from './dialogbox/bill-view-dialog/bill-view-
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core'; // needed for mat-option
 
+//sorting panna
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -57,7 +59,8 @@ import { MatOptionModule } from '@angular/material/core'; // needed for mat-opti
     HttpClientModule, // Import HttpClientModule for HTTP requests
     ReactiveFormsModule, // Import ReactiveFormsModule for reactive forms,
     MatSelectModule,
-    MatOptionModule
+    MatOptionModule,
+    MatSortModule,
   ],
 })
 export class DashboardModule {}

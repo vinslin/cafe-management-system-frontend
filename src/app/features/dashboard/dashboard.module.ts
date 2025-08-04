@@ -24,6 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms'; // Import FormsModule for form handling
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductDialogComponent } from './dialogbox/product-dialog/product-dialog.component';
+import { BillViewDialogComponent } from './dialogbox/bill-view-dialog/bill-view-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     ProductComponent,
     CategoryDialogComponent,
+    ProductDialogComponent,
+    BillViewDialogComponent,
   ],
   imports: [
     CommonModule,

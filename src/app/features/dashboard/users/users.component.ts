@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class UsersComponent {
   searchValue = '';
   displayedColumns: string[] = ['name', 'email', 'contactNumber', 'status'];
-  openGetter() {}
+
 
   dataSource = [
     {

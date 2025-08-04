@@ -23,7 +23,7 @@ export class CategoryComponent {
 
   openGetter() {
     const dialogRef = this.dialog.open(CategoryDialogComponent, {
-      width: '600px',
+      width: '400px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {

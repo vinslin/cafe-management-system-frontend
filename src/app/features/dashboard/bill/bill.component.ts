@@ -19,7 +19,7 @@ export class BillComponent {
   deleteBill(id: number) {}
 
   viewBill(id: number) {}
-  openGetter() {}
+
 
   dataSource = [
     {

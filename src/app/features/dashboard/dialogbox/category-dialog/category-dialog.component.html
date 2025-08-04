@@ -1,1 +1,22 @@
-<p>category-dialog works!</p>
+<h2 mat-dialog-title>Add Category</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Category Name</mat-label>
+    <input
+      matInput
+      placeholder="Enter category name"
+      [(ngModel)]="categoryName"
+    />
+  </mat-form-field>
+
+  <div *ngIf="errorMessage" style="color: red">
+    {{ errorMessage }}
+  </div>
+</mat-dialog-content>
+
+<!-- Buttons to control the dialog -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onAddCategory()">Add</button>
+</mat-dialog-actions>

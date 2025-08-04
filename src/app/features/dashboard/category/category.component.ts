@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CategoryDialogComponent } from '../dialogbox/category-dialog/category-dialog.component';
 
 @Component({
   selector: 'app-category',
@@ -16,7 +18,24 @@ export class CategoryComponent {
     { id: 4, name: 'Burger' },
     { id: 5, name: 'Sandwich' },
   ];
-  openGetter() {}
+
+  constructor(public dialog: MatDialog) {}
+
+  openGetter() {
+    const dialogRef = this.dialog.open(CategoryDialogComponent, {
+      width: '600px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Category added:', result);
+        // Here you can handle the result, e.g., add it to the dataSource
+        //this.dataSource.push({ id: this.dataSource.length + 1, name: result });
+
+        //for call the get all category api
+      }
+    });
+  }
 
   updateCategory(id: number) {
     console.log('done');

@@ -10,15 +10,21 @@ import { UsersComponent } from './users/users.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon'; // optional for icons
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ProductComponent } from './product/product.component';
-import { MatDialog } from '@angular/material/dialog';
-import { CategoryDialogComponent } from './dialogbox/category-dialog/category-dialog.component'; //pop up 
+import { CategoryDialogComponent } from './dialogbox/category-dialog/category-dialog.component'; //pop up
+
+//dialog box
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms'; // Import FormsModule for form handling
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -39,6 +45,11 @@ import { CategoryDialogComponent } from './dialogbox/category-dialog/category-di
     MatToolbarModule,
     MatTableModule,
     MatSlideToggleModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule, // Import FormsModule for form handling
+    HttpClientModule, // Import HttpClientModule for HTTP requests
+    ReactiveFormsModule, // Import ReactiveFormsModule for reactive forms
   ],
 })
 export class DashboardModule {}

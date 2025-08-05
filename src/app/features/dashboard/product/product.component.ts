@@ -4,6 +4,7 @@ import { ProductDialogComponent } from '../dialogbox/product-dialog/product-dial
 import { ProductService } from 'src/app/services/product/product.service';
 import { GetAllProductsRes } from 'src/app/models/interface/IProduct';
 import { MatTableDataSource } from '@angular/material/table';
+import { UserStatusReq } from 'src/app/models/interface/IUsers';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -54,23 +55,64 @@ export class ProductComponent implements OnInit {
   }
 
   updateProduct(id: number) {
-    console.log('update');
-    console.log(id);
+    this.productService.getProductById(id).subscribe({
+      next: (response) => {
+        console.log('Product fetched successfully:', response);
+
+        const dialogRef = this.dialog.open(ProductDialogComponent, {
+          width: '400px',
+          data: response, //
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            console.log('Product updated:', result);
+            this.getAllProducts(); // Refresh list
+          }
+        });
+      },
+      error: (error) => {
+        console.error('Error fetching product:', error);
+      },
+    });
   }
-  deleteProduct(id: number) {}
+
+  deleteProduct(id: number) {
+    console.log(id);
+    const confirm = window.confirm(
+      'Are you sure you want to delete this product?'
+    );
+    if (confirm) {
+      this.productService.deleteProduct(id).subscribe({
+        next: (response) => {
+          console.log('Product deleted successfully:', response);
+          this.getAllProducts(); // Refresh the product list after deletion
+        },
+        error: (error) => {
+          console.error('Error deleting product:', error);
+        },
+      });
+    }
+    //if (confirm) {
+  }
   onToggleChange(id: number, isChecked: boolean) {
-    const status = isChecked ? 1 : 0;
+    const status = isChecked ? 'true' : 'false';
 
     console.log(`Calling API for ID: ${id}, New Status: ${status}`);
 
-    // Example API call (adjust according to your service)
-    // this.apiService.updateStatus(id, status).subscribe(
-    //   (response) => {
-    //     console.log('Status updated successfully:', response);
-    //   },
-    //   (error) => {
-    //     console.error('Error updating status:', error);
-    //   }
-    // );
+    const req: UserStatusReq = {
+      id: id,
+      status: status,
+    };
+
+    this.productService.updateStatus(req).subscribe(
+      (response) => {
+        console.log('Status updated successfully:', response);
+        this.getAllProducts();
+      },
+      (error) => {
+        console.error('Error updating status:', error);
+      }
+    );
   }
 }

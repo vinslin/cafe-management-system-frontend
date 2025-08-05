@@ -39,7 +39,7 @@ export class LoginComponent {
           //   console.log(response);
 
           if (this.storeToken(response.token)) {
-            // this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard']);
             console.log('redirected');
           }
         },

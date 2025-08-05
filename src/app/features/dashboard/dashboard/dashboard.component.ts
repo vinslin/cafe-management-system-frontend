@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/services/category/category.service';
 import { GetAllCategoriesRes } from 'src/app/models/interface/ICategory';
 import { GetProductCountRes } from 'src/app/models/interface/IProduct';
 import { ProductService } from 'src/app/services/product/product.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,7 +15,8 @@ export class DashboardComponent implements OnInit {
   bill = 12;
   constructor(
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {}
 
   getCategoryCount(): void {
@@ -56,5 +58,8 @@ export class DashboardComponent implements OnInit {
     this.getCategoryCount();
     this.getProductCount();
   }
-  goto() {}
+  goto(path: string) {
+    this.router.navigate(['/dashboard', path]);
+    console.log(`/dashboard ${path}`);
+  }
 }

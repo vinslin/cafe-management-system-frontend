@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './features/layout/layout.component';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
@@ -8,14 +10,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
-  // {
-  //   path: ' ',
-  //   redirectTo: 'auth/login',
-  //   pathMatch: 'full',
-  // },
   {
-    path: '',
+    path: ' ',
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
     component: LayoutComponent, //layout wrap pandrom
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -23,6 +26,7 @@ const routes: Routes = [
           import('./features/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
+        canActivate: [AuthGuard],
       },
     ],
   },
